@@ -54,6 +54,8 @@ void csv_reader::readData(ifstream &ip)
 
 	//temp variables
 	string date;
+	string monthday;
+	string year;
 	string open;
 	string high;
 	string low;
@@ -66,7 +68,13 @@ void csv_reader::readData(ifstream &ip)
 		//increment counter
 		++counter;
 
-		getline(ip, date, ',');
+		//read monthday & year separately, & combine to date.
+		getline(ip, monthday, ',');
+		getline(ip, year, ',');
+
+		//adds separate comma, as comma is used as a delimeter, but date contain comma too.
+		date = monthday + "," + year;
+
 		getline(ip, open, ',');
 		getline(ip, high, ',');
 		getline(ip, low, ',');
