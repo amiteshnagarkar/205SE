@@ -45,13 +45,39 @@ void csv_reader::readHeader(ifstream &ip)
 
 
 
-
-
+//sample data
+//C:\Amitesh\205SE\testData\BTChist.csv
 void csv_reader::readData(ifstream &ip) 
 {
+	//read data until end of file
+	int counter = 0;
 
+	//temp variables
+	string date;
+	string open;
+	string high;
+	string low;
+	string close;
+	string volume;
+	string marketCap;
 
+	while (ip.good())
+	{
+		//increment counter
+		++counter;
+
+		getline(ip, date, ',');
+		getline(ip, open, ',');
+		getline(ip, high, ',');
+		getline(ip, low, ',');
+		getline(ip, close, ',');
+		getline(ip, volume, ',');
+		getline(ip, marketCap);
+
+		std::cout << "\n" << "Date: " << date << ", Open: " << open << ", high: " << high << ", low: " << low << ", close: " << close << ", volume: " << volume << ", marketCap: " << marketCap << "\n";
+	}
 }
+
 
 
 
