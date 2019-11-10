@@ -16,6 +16,8 @@ class csv_reader
 private:
 	string csvFileName;
 	vector<csv_data>csvDataList;
+	float high_HighValue;
+	float low_LowValue;
 
 	void readHeader(ifstream &ip);
 	void readData(ifstream &ip);
@@ -29,5 +31,9 @@ public:
 
 	void readFile();
 	void displayCsvData();
+	void calculateHighAndLowValue();
+	float getHighHighValue();
+	float getLowLowValue();
 
+	
 };

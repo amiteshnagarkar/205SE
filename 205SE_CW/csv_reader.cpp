@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <limits>
 
 
 using namespace std;
@@ -130,6 +131,7 @@ void csv_reader::readFile()
 	if (!ip.is_open())
 	{
 		cout << "Error: File Open\n";
+		exit(-1);
 	}
 	else
 	{
@@ -138,6 +140,38 @@ void csv_reader::readFile()
 		this->readHeader(ip);
 		this->readData(ip);
 	}
+}
+
+void csv_reader::calculateHighAndLowValue()
+{
+	float highValue = 0;
+	float lowValue = std::numeric_limits<float>::max();
+	for (unsigned int i = 0; i < csvDataList.size(); i++)
+	{
+		csv_data rowData = csvDataList[i];
+		if (rowData.high > highValue)
+		{
+			highValue = rowData.high;
+		}
+
+		if (rowData.low < lowValue)
+		{
+			lowValue = rowData.low;
+		}
+	}
+	high_HighValue = highValue;
+	low_LowValue = lowValue;
+
+}
+
+float csv_reader::getHighHighValue()
+{
+	return high_HighValue;
+}
+
+float csv_reader::getLowLowValue()
+{
+	return low_LowValue;
 }
 
 
