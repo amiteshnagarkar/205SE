@@ -6,10 +6,10 @@ class csv_data
 {
 	public:
 	string date;
-	string open;
-	string high;
-	string low;
-	string close;
+	float open;
+	float high;
+	float low;
+	float close;
 	string volume;
 	string marketCap;
 
