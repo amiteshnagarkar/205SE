@@ -22,6 +22,10 @@ void main()
 
 	fileReader.readFile();
 	fileReader.displayCsvData();
+	fileReader.calculateHighAndLowValue();
+
+	cout << "High High value is : " << fileReader.getHighHighValue() << "\n";
+	cout << "Low Low value is : " << fileReader.getLowLowValue();
 
 
 }
