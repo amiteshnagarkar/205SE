@@ -59,14 +59,15 @@ void csv_reader::readData(ifstream &ip)
 	string monthday;
 	string year;
 
-	/* 
+	
 	string open;
 	string high;
 	string low;
 	string close;
-	string volume;
-	string marketCap;
-	*/
+
+	//string volume;
+	//string marketCap;
+	
 
 	while (ip.good())
 	{
@@ -82,15 +83,20 @@ void csv_reader::readData(ifstream &ip)
 		//adds separate comma, as comma is used as a delimeter, but date contain comma too.
 		rowData.date = monthday + "," + year;
 
-		
+		getline(ip,open, ',');
+		rowData.open = std::stof(open);
 
-		getline(ip, rowData.open, ',');
-		getline(ip, rowData.high, ',');
-		getline(ip, rowData.low, ',');
-		getline(ip, rowData.close, ',');
+		getline(ip, high, ',');
+		rowData.high = std::stof(high);
+
+		getline(ip, low, ',');
+		rowData.low = std::stof(low);
+
+		getline(ip, close, ',');
+		rowData.close = std::stof(close);
+
 		getline(ip, rowData.volume, ',');
 		getline(ip, rowData.marketCap);
-
 
 		this->csvDataList.push_back(rowData);
 
@@ -142,51 +148,5 @@ void csv_reader::readFile()
 
 
 
-/* 
 
-
-void csv_reader::readFile()
-{
-	printf ("csv_reader::readFile\n");
-	printf ("reading file: %s\n", csvFileName.c_str());
-
-	ifstream ip(csvFileName.c_str());
-
-	if (!ip.is_open()) std::cout << "Error: File Open" << '\n';
-
-	string date;
-	string open;
-	string high;
-	string low;
-	string close;
-	string volume;
-	string marketCap;
-	int counter = 0;
-
-	// read header
-	getline(ip, date,',');
-	getline(ip, open,',');
-	getline(ip, high,',');
-	getline(ip, low,',');
-	getline(ip, close,',');
-	getline(ip, volume,',');
-	getline(ip, marketCap);
-
-	while(ip.good())
-	{
-		++counter;
-		cout << "Count = " << counter;
-		getline(ip, date,',');
-		getline(ip, open,',');
-		getline(ip, high,',');
-		getline(ip, low,',');
-		getline(ip, close,',');
-		getline(ip, volume,',');
-		getline(ip, marketCap);
-
-		std::cout << date << ", " << open << ", " << high << ", " << low << ", " << close << ", " << volume << ", " << marketCap << "\n";
-	}
-}
-
-*/
 
