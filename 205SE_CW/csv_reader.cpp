@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <vector>
+
 
 using namespace std;
 
@@ -38,7 +40,7 @@ void csv_reader::readHeader(ifstream &ip)
 	getline(ip, volume, ',');
 	getline(ip, marketCap);
 	cout << "Headers read successfully \n";
-	cout << date << ", " << open << "," << high << "," << low << "," << close << "," << volume << "," << marketCap;
+	cout << date << ", " << open << "," << high << "," << low << "," << close << "," << volume << "," << marketCap << "\n";
 
 }
 
@@ -46,7 +48,7 @@ void csv_reader::readHeader(ifstream &ip)
 
 
 //sample data
-//C:\Amitesh\205SE\testData\BTChist.csv
+//C:\Amitesh\205SE\testData\BTChist2.csv
 void csv_reader::readData(ifstream &ip) 
 {
 	//read data until end of file
@@ -56,12 +58,15 @@ void csv_reader::readData(ifstream &ip)
 	string date;
 	string monthday;
 	string year;
+
+	/* 
 	string open;
 	string high;
 	string low;
 	string close;
 	string volume;
 	string marketCap;
+	*/
 
 	while (ip.good())
 	{
@@ -72,21 +77,38 @@ void csv_reader::readData(ifstream &ip)
 		getline(ip, monthday, ',');
 		getline(ip, year, ',');
 
+		csv_data rowData;
+
 		//adds separate comma, as comma is used as a delimeter, but date contain comma too.
-		date = monthday + "," + year;
+		rowData.date = monthday + "," + year;
 
-		getline(ip, open, ',');
-		getline(ip, high, ',');
-		getline(ip, low, ',');
-		getline(ip, close, ',');
-		getline(ip, volume, ',');
-		getline(ip, marketCap);
+		
 
-		std::cout << "\n" << "Date: " << date << ", Open: " << open << ", high: " << high << ", low: " << low << ", close: " << close << ", volume: " << volume << ", marketCap: " << marketCap << "\n";
+		getline(ip, rowData.open, ',');
+		getline(ip, rowData.high, ',');
+		getline(ip, rowData.low, ',');
+		getline(ip, rowData.close, ',');
+		getline(ip, rowData.volume, ',');
+		getline(ip, rowData.marketCap);
+
+
+		this->csvDataList.push_back(rowData);
+
+		//std::cout << "\n" << "Date: " << date << ", Open: " << open << ", high: " << high << ", low: " << low << ", close: " << close << ", volume: " << volume << ", marketCap: " << marketCap << "\n";
 	}
 }
 
+void csv_reader::displayCsvData()
+{
+	cout << "Displaying data in csv data list \n ";
+	for (unsigned int i = 0; i < csvDataList.size(); i++)
+	{
+		csv_data rowData = csvDataList[i];
 
+		std::cout << "\n" << "Date: " << rowData.date << ", Open: " << rowData.open << ", high: " << rowData.high << ", low: " << rowData.low << ", close: " << rowData.close << ", volume: " << rowData.volume << ", marketCap: " << rowData.marketCap << "\n";
+	}
+		
+}
 
 
 
@@ -111,6 +133,12 @@ void csv_reader::readFile()
 		this->readData(ip);
 	}
 }
+
+
+
+
+
+
 
 
 

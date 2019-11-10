@@ -152,9 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="205SE_CW.cpp" />
+    <ClCompile Include="csv_data.cpp" />
     <ClCompile Include="csv_reader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="csv_data.h" />
     <ClInclude Include="csv_reader.h" />
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,7 @@ void main()
 	csv_reader fileReader(fileName);
 
 	fileReader.readFile();
-
+	fileReader.displayCsvData();
 
 
 }
