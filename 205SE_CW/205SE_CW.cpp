@@ -12,6 +12,7 @@ using namespace std;
 void main()
 {
 
+	/* 
 	string fileName;
 	cout << "Enter the file name : ";
 	cin >> fileName;
@@ -27,8 +28,35 @@ void main()
 	cout << "High High value is : " << fileReader.getHighHighValue() << "\n";
 	cout << "Low Low value is : " << fileReader.getLowLowValue();
 
+	*/
+
+	int i = 0;
+	cout << "price";
+
+	for (i = 0; i < 100; i++)
+	{
+		cout << " ";
+	}
+
+	cout << "Candlestick chart showing last 3 months data. \n";
+
+	int counter = 0;
+	for ( i = 0; i < 165; i++)
+	{
+		counter++;
+		if (counter == 3) {
+			cout << (char)194;
+			
+			counter = 0;
+		}
+		else 
+			cout << (char)196;
+	}
+
+	return;
 
 }
+
 
 
 
